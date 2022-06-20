@@ -15,7 +15,7 @@ import {
   ecomPieChartData,
 } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
-import { itemMove } from "@syncfusion/ej2/treemap";
+// import { itemMove } from "@syncfusion/ej2/treemap";
 const Ecommerce = () => {
   const { currentColor } = useStateContext();
   return (
