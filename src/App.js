@@ -26,8 +26,6 @@ import { useStateContext } from "./contexts/ContextProvider";
 
 function App() {
   const {
-    setCurrentColor,
-    setCurrentMode,
     currentMode,
     activeMenu,
     currentColor,
