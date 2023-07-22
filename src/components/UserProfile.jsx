@@ -5,10 +5,23 @@ import { Button } from ".";
 import { userProfileData } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 import avatar from "../data/avatar.jpg";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
-const UserProfile = () => {
+const UserProfile = ({ authUser }) => {
   const { currentColor, show, setShow } = useStateContext();
-
+  const navigate = useNavigate();
+  const userSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("signout Successfull");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       {show ? (
@@ -32,8 +45,7 @@ const UserProfile = () => {
             />
             <div>
               <p className='font-semibold text-xl dark:text-gray-200'>
-                {" "}
-                Kushaga Krishna
+                {authUser?.email}
               </p>
               <p className='text-gray-500 text-sm dark:text-gray-400'>
                 {" "}
@@ -76,6 +88,7 @@ const UserProfile = () => {
           </div>
           <div className='mt-5'>
             <Button
+              onClick={userSignOut}
               color='white'
               bgColor={currentColor}
               text='Logout'

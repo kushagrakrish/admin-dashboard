@@ -22,7 +22,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
     </button>
   </TooltipComponent>
 );
-const Navbar = () => {
+const Navbar = ({ authUser }) => {
   const {
     currentColor,
     activeMenu,
@@ -96,7 +96,7 @@ const Navbar = () => {
             <p>
               <span className='text-gray-400 text-14'>Hi,</span>
               <span className='text-gray-400 font-bold ml-1 text-14'>
-                Kushagra
+                {authUser?.email}
               </span>
             </p>
             <MdKeyboardArrowDown className='text-gray-400 text-14' />
@@ -105,7 +105,7 @@ const Navbar = () => {
         {isClicked.cart && <Cart />}
         {isClicked.chat && <Chat />}
         {isClicked.notification && <Notification />}
-        {isClicked.userProfile && <UserProfile />}
+        {isClicked.userProfile && <UserProfile authUser={authUser} />}
       </div>
     </div>
   );
